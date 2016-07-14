@@ -34,3 +34,11 @@
 	position:relative;
 	top:1px;
 }
+
+.header {
+	background-color: lightgreen;
+}
+
+.tweet {
+	background-color: lightblue;
+}
