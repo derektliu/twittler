@@ -18,10 +18,10 @@
       var $header = $('.header');
 
       var $button = $('<a href="#" class="button">Update Feed</a>');
-      $button.appendTo($header);
+      $button.appendTo($body);
 
-      var $feed = $('<div></div>');
-      $feed.appendTo($header);
+      var $feed = $('<div class="feed"></div>');
+      $feed.appendTo($body);
       
       var firstTweets = function() {
         index = 0;
@@ -30,8 +30,7 @@
 
       var postTweets = function(username) {
 
-        var tweet;
-        var $tweet, $user, $message, $time;
+        var tweet, $tweet, $user, $message, $time;
 
         $feed.html('');
 
@@ -65,7 +64,7 @@
           $message.appendTo($tweet);
 
           // time component
-          $time = $('<div class="time"></div>');
+          $time = $('<span class="time"></span>');
           $time.text('Tweeted on ' + tweet.created_at);
           $time.appendTo($tweet);
 
