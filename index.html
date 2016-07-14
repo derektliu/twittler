@@ -31,11 +31,26 @@
       var postTweets = function() {
 
         for (var i = index; i < streams.home.length - 1; i++) {
-          var tweet = streams.home[index];
+          var tweet = streams.home[i];
           var $tweet = $('<div></div>');
-          $tweet.html('@' + tweet.user + ': ' + tweet.message + ' ' + tweet.created_at);
+
+          var $user = $('<a></a>');
+          $user.text('@' + tweet.user);
+          $user.appendTo($tweet);
+
+          var $message = $('<span class="message"></span>');
+          $message.text(': ' + tweet.message);
+          $message.appendTo($tweet);
+
+          var $time = $('<span class="time"></span>');
+          $time.text(' tweeted on ' + tweet.created_at);
+          $time.appendTo($tweet);
+
+          // $tweet.html('@' + tweet.user + ': ' + tweet.message + ' ' + tweet.created_at);
+
           $feed.prepend($tweet.hide());
           $tweet.slideDown();
+
           index++;
         }  
       };
