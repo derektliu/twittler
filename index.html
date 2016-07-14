@@ -13,11 +13,10 @@
 
     $(document).ready(function() {
       var $body = $('body');
-      $body.html('<h1>Derek\'s Twittler</h1>');
+      $body.html('');
 
-      var $button = $('<a href="#" class="button">Refresh Feed</a>');
-      $button.appendTo($body);
-
+      var $button = $('<a href="#" class="button">Update Feed</a>');
+      
       var firstTweets = function() {
 
         index = streams.home.length - 1;
@@ -40,16 +39,28 @@
           var tweet = streams.home[index];
           var $tweet = $('<div></div>');
           $tweet.html('@' + tweet.user + ': ' + tweet.message + ' ' + tweet.created_at);
-          $tweet.appendTo($body);
+          $tweet.prependTo($body);
           index -= 1;
         }
         originalIndex = newIndex;
 
         
       };
+      /*
+      var postTweets = function(tweetIndex) {
+        index = streams.home.length - 1;
+        newIndex = index;                    
+        while (index >= originalIndex) {
+          var tweet = streams.home[index];
+          var $tweet = $('<div></div>');
+          $tweet.html('@' + tweet.user + ': ' + tweet.message + ' ' + tweet.created_at);
+          $tweet.appendTo($body);
+          index -= 1;
+        }
+      };*/
 
       firstTweets();
-
+      $button.appendTo($body);
       $('.button').on('click', function(event) {
         event.preventDefault();
         newTweets();
