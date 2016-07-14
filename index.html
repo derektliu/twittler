@@ -8,10 +8,10 @@
   <body>
     <script>
 
-    var index, originalIndex, newIndex;
-
-
     $(document).ready(function() {
+
+      var index, originalIndex, newIndex;
+
       var $body = $('body');
       $body.html('');
 
@@ -35,6 +35,7 @@
       };
 
       firstTweets();
+
       $button.appendTo($body);
       $('.button').on('click', function(event) {
         event.preventDefault();
