@@ -30,23 +30,27 @@
 
       var postTweets = function(username) {
 
-        
+        var tweet;
+        var $tweet, $user, $message, $time;
+
         $feed.html('');
 
         if (!username) {
           // if no user entered, display all.
           selector = streams.home;
         } else if (username) {
-          // if user entered, display only user.
+          // if username selected, display only user.
           selector = streams.users[username];
         }
 
         for (var i = 0; i < selector.length - 1; i++) {
-          var tweet = selector[i];
-          var $tweet = $('<div class ="tweet"></div>');
+
+          // tweet component
+          tweet = selector[i];
+          $tweet = $('<div class ="tweet"></div>');
 
           // user component
-          var $user = $('<a></a>');
+          $user = $('<a></a>');
           $user.attr({
             'href': '#',
             'data-user': tweet.user,
@@ -56,12 +60,12 @@
           $user.appendTo($tweet);
 
           // message component
-          var $message = $('<span class="message"></span>');
+          $message = $('<span class="message"></span>');
           $message.text(': ' + tweet.message);
           $message.appendTo($tweet);
 
           // time component
-          var $time = $('<div class="time"></div>');
+          $time = $('<div class="time"></div>');
           $time.text('Tweeted on ' + tweet.created_at);
           $time.appendTo($tweet);
 
