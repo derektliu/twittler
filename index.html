@@ -26,7 +26,8 @@
           var tweet = streams.home[index];
           var $tweet = $('<div></div>');
           $tweet.html('@' + tweet.user + ': ' + tweet.message + ' ' + tweet.created_at);
-          $tweet.appendTo($body);
+          $body.prepend($tweet.hide());
+          $tweet.slideDown();
           index -= 1;
         }
       };
@@ -39,7 +40,8 @@
           var tweet = streams.home[index];
           var $tweet = $('<div></div>');
           $tweet.html('@' + tweet.user + ': ' + tweet.message + ' ' + tweet.created_at);
-          $tweet.prependTo($body);
+          $body.prepend($tweet.hide());
+          $tweet.slideDown();
           index -= 1;
         }
         originalIndex = newIndex;
