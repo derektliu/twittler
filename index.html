@@ -13,16 +13,12 @@
 
     $(document).ready(function() {
 
-      var index, originalIndex, newIndex;
+      var index;
       var $body = $('body');
       var $header = $('.header');
-      
+
       var $button = $('<a href="#" class="button">Update Feed</a>');
       $button.appendTo($header);
-      $('.button').on('click', function(event) {
-        event.preventDefault();
-        postTweets();
-      });
 
       var $feed = $('<div></div>');
       $feed.appendTo($header);
@@ -46,11 +42,12 @@
 
       firstTweets();
 
-
+      $('.button').on('click', function(event) {
+        event.preventDefault();
+        postTweets();
+      });
 
     });
-
-
 
     </script>
   </body>
