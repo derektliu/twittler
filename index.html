@@ -18,54 +18,27 @@
       var $button = $('<a href="#" class="button">Update Feed</a>');
       
       var firstTweets = function() {
+        index = 0;
+        postTweets();
+      };
 
-        index = streams.home.length - 1;
-        originalIndex = index;
+      var postTweets = function() {
 
-        while (index >= 0) {
+        for (var i = index; i < streams.home.length - 1; i++) {
           var tweet = streams.home[index];
           var $tweet = $('<div></div>');
           $tweet.html('@' + tweet.user + ': ' + tweet.message + ' ' + tweet.created_at);
           $body.prepend($tweet.hide());
           $tweet.slideDown();
-          index -= 1;
-        }
+          index++;
+        }  
       };
-
-      var newTweets = function() {
-
-        index = streams.home.length - 1;
-        newIndex = index;                    
-        while (index >= originalIndex) {
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.html('@' + tweet.user + ': ' + tweet.message + ' ' + tweet.created_at);
-          $body.prepend($tweet.hide());
-          $tweet.slideDown();
-          index -= 1;
-        }
-        originalIndex = newIndex;
-
-        
-      };
-      /*
-      var postTweets = function(tweetIndex) {
-        index = streams.home.length - 1;
-        newIndex = index;                    
-        while (index >= originalIndex) {
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.html('@' + tweet.user + ': ' + tweet.message + ' ' + tweet.created_at);
-          $tweet.appendTo($body);
-          index -= 1;
-        }
-      };*/
 
       firstTweets();
       $button.appendTo($body);
       $('.button').on('click', function(event) {
         event.preventDefault();
-        newTweets();
+        postTweets();
       });
 
     });
