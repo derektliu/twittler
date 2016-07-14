@@ -6,16 +6,26 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
+    <div class="header">
+      <h1>Derek's Twittler </h1>
+    </div>    
     <script>
 
     $(document).ready(function() {
 
       var index, originalIndex, newIndex;
-
       var $body = $('body');
-      $body.html('');
-
+      var $header = $('.header');
+      
       var $button = $('<a href="#" class="button">Update Feed</a>');
+      $button.appendTo($header);
+      $('.button').on('click', function(event) {
+        event.preventDefault();
+        postTweets();
+      });
+
+      var $feed = $('<div></div>');
+      $feed.appendTo($header);
       
       var firstTweets = function() {
         index = 0;
@@ -28,7 +38,7 @@
           var tweet = streams.home[index];
           var $tweet = $('<div></div>');
           $tweet.html('@' + tweet.user + ': ' + tweet.message + ' ' + tweet.created_at);
-          $body.prepend($tweet.hide());
+          $feed.prepend($tweet.hide());
           $tweet.slideDown();
           index++;
         }  
@@ -36,11 +46,7 @@
 
       firstTweets();
 
-      $button.appendTo($body);
-      $('.button').on('click', function(event) {
-        event.preventDefault();
-        postTweets();
-      });
+
 
     });
 
