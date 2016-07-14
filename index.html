@@ -13,7 +13,7 @@
 
     $(document).ready(function() {
 
-      var index;
+      var index, selector;
       var $body = $('body');
       var $header = $('.header');
 
@@ -28,14 +28,30 @@
         postTweets();
       };
 
-      var postTweets = function() {
+      var postTweets = function(username) {
 
-        for (var i = index; i < streams.home.length - 1; i++) {
-          var tweet = streams.home[i];
+        
+        $feed.html('');
+
+        if (!username) {
+          // if no user entered, display all.
+          selector = streams.home;
+        } else if (username) {
+          // if user entered, display only user.
+          selector = streams.users[username];
+        }
+
+        for (var i = 0; i < selector.length - 1; i++) {
+          var tweet = selector[i];
           var $tweet = $('<div class ="tweet"></div>');
 
           // user component
-          var $user = $('<a class ="user" data-user:"' + tweet.user + '" href="#"></a>');
+          var $user = $('<a></a>');
+          $user.attr({
+            'href': '#',
+            'data-user': tweet.user,
+            'class': 'user' 
+          });
           $user.text('@' + tweet.user);
           $user.appendTo($tweet);
 
@@ -50,11 +66,17 @@
           $time.appendTo($tweet);
 
           // feed animation
-          $feed.prepend($tweet.hide());
-          $tweet.slideDown();
+          // $feed.prepend($tweet.hide());
+          // $tweet.slideDown();
+          $feed.prepend($tweet);
 
           index++;
-        }  
+        }
+
+        $('.user').on('click', function(event) {
+          event.preventDefault();
+          postTweets($(this).data('user'));
+        });  
       };
 
       firstTweets();
@@ -62,11 +84,6 @@
       $('.button').on('click', function(event) {
         event.preventDefault();
         postTweets();
-      });
-
-      $('.user').on('click', function(event) {
-        event.preventDefault();
-        postTweets($(this).data('user'));
       });
 
     });
