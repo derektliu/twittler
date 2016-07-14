@@ -61,8 +61,8 @@
           $message.appendTo($tweet);
 
           // time component
-          var $time = $('<span class="time"></span>');
-          $time.text(' tweeted on ' + tweet.created_at);
+          var $time = $('<div class="time"></div>');
+          $time.text('Tweeted on ' + tweet.created_at);
           $time.appendTo($tweet);
 
           // feed animation
