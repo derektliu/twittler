@@ -35,7 +35,7 @@
           var $tweet = $('<div class ="tweet"></div>');
 
           // user component
-          var $user = $('<a class ="user" data-user:"' + tweet.user + '"></a>');
+          var $user = $('<a class ="user" data-user:"' + tweet.user + '" href="#"></a>');
           $user.text('@' + tweet.user);
           $user.appendTo($tweet);
 
@@ -62,6 +62,11 @@
       $('.button').on('click', function(event) {
         event.preventDefault();
         postTweets();
+      });
+
+      $('.user').on('click', function(event) {
+        event.preventDefault();
+        postTweets($(this).data('user'));
       });
 
     });
