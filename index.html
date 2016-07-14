@@ -34,20 +34,22 @@
           var tweet = streams.home[i];
           var $tweet = $('<div class ="tweet"></div>');
 
-          var $user = $('<a class ="user"></a>');
+          // user component
+          var $user = $('<a class ="user" data-user:"' + tweet.user + '"></a>');
           $user.text('@' + tweet.user);
           $user.appendTo($tweet);
 
+          // message component
           var $message = $('<span class="message"></span>');
           $message.text(': ' + tweet.message);
           $message.appendTo($tweet);
 
+          // time component
           var $time = $('<span class="time"></span>');
           $time.text(' tweeted on ' + tweet.created_at);
           $time.appendTo($tweet);
 
-          // $tweet.html('@' + tweet.user + ': ' + tweet.message + ' ' + tweet.created_at);
-
+          // feed animation
           $feed.prepend($tweet.hide());
           $tweet.slideDown();
 
